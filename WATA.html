@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wata Na?</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+background-image:url("MAX.JPG");
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+}
+
+
+
+
+.countdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.big-text {
+    font-weight: bold;
+    font-size: 6rem;
+    line-height: 1;
+    margin: 1rem 2rem;
+}
+
+.countdown-el {
+    text-align: center;
+	color:red;
+}
+
+.countdown-el span {
+    font-size: 1.3rem;
+	
+}
+form{
+color:red;
+font-size:30px;
+}
+p{
+color:red;
+font-size:30px;
+}
+</style>
+</head>
+<body>
+
+<p>To Book YOUR TABLE FILL IN:</p>
+ <form action="https://formspree.io/f/myyolqgd" method= "POST" >
+         Full names:<br><input type="text" name="Name"> <br>
+         Contact:<br><input type="text" name="Contacts"><br>
+         <input type="submit" value="Send">
+		 </form>
+		<div class="countdown-container">
+            <div class="countdown-el days-c">
+                <p class="big-text" id="days">0</p>
+                <span>days</span>
+            </div>
+            <div class="countdown-el hours-c">
+                <p class="big-text" id="hours"></p>
+                <span>hours</span>
+            </div>
+            <div class="countdown-el mins-c">
+                <p class="big-text" id="mins"></p>
+                <span>mins</span>
+            </div>
+            <div class="countdown-el seconds-c">
+                <p class="big-text" id="seconds"></p>
+                <span>seconds</span>
+            </div>
+        </div>
+<script>
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minsEl = document.getElementById("mins");
+const secondsEl = document.getElementById("seconds");
+
+const newYears = "09-jul-2022";
+
+function countdown() {
+    const newYearsDate = new Date(newYears);
+    const currentDate = new Date();
+
+    const totalSeconds = (newYearsDate - currentDate) / 1000;
+
+    const days = Math.floor(totalSeconds / 3600 / 24);
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const mins = Math.floor(totalSeconds / 60) % 60;
+    const seconds = Math.floor(totalSeconds) % 60;
+
+    daysEl.innerHTML = days;
+    hoursEl.innerHTML = formatTime(hours);
+    minsEl.innerHTML = formatTime(mins);
+    secondsEl.innerHTML = formatTime(seconds);
+}
+
+function formatTime(time) {
+    return time < 10 ? `0${time}` : time;
+}
+
+// initial call
+countdown();
+
+setInterval(countdown, 1000);
+</script> 
+		 
+</body>
+</html>
